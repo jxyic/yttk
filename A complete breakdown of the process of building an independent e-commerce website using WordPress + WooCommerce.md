@@ -5,7 +5,7 @@
 1. 整体架构 (Architecture Overview) 这类站点的核心诉求是：低成本上线、能收款、能被 Google 收录。
 
    - 典型公式：WordPress（内容管理）+ WooCommerce（收款）+ Cloudflare（加速防护）+ 便宜托管（控制成本）。
-   - https://hifinefilter.com 完整复现了这套公式，月均运营成本可控制在 $10–20 以内。
+   - hifine 完整复现了这套公式，月均运营成本可控制在 $10–20 以内。
 
 2. 托管与服务器 (Hosting & Server) 选托管决定了站点的速度下限。
 
