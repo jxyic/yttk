@@ -1,0 +1,54 @@
+用 WordPress + WooCommerce 搭建外贸独立站全流程拆解（以 hifinefilter.com 为例）
+
+本文以 https://hifinefilter.com 为样本，完整还原一个外贸独立站的技术选型逻辑，适合准备从零搭站或想优化现有站点的人参考。
+
+1. 整体架构 (Architecture Overview) 这类站点的核心诉求是：低成本上线、能收款、能被 Google 收录。
+
+   - 典型公式：WordPress（内容管理）+ WooCommerce（收款）+ Cloudflare（加速防护）+ 便宜托管（控制成本）。
+   - https://hifinefilter.com 完整复现了这套公式，月均运营成本可控制在 $10–20 以内。
+
+2. 托管与服务器 (Hosting & Server) 选托管决定了站点的速度下限。
+
+   - 托管商: Hostinger，性价比首选，Business 套餐约 $5/月，含免费 SSL 和一键装 WordPress。
+   - Web 服务器: LiteSpeed，比 Apache 更适合 WordPress，内置对象缓存（LSAPI），无需额外安装缓存插件。
+   - 编程语言: PHP，WordPress 原生运行环境，无需额外配置。
+   - 数据库: MySQL，WordPress 默认搭配，Hostinger 已预装。
+
+3. CDN 与网络协议 (CDN & Protocol) 外贸站的访客主要在海外，CDN 直接影响首屏速度。
+
+   - CDN: Cloudflare Free 套餐已足够，静态资源全球分发，同时提供 DDoS 防护和 WAF。
+   - 协议: HTTP/3（QUIC），在 Cloudflare 控制台一键开启，弱网环境下首屏加载明显提升。
+   - 提示：Cloudflare 免费版对中小站来说几乎没有短板，不需要升级付费套餐。
+
+4. 电商核心 (eCommerce Core) WooCommerce 是 WordPress 生态下最成熟的收款方案。
+
+   - 插件版本: WooCommerce 10.7.0，支持产品页、购物车、结账、订单管理全流程。
+   - 支付网关: WooCommerce 本身不含支付，需单独安装 Stripe 或 PayPal 插件（均免费）。
+   - 提示：如果客单价高、以询价为主，可以用 WooCommerce + 询价插件替代直接购买流程。
+
+5. SEO 配置 (SEO Setup) 外贸独立站的核心流量来源是 Google Organic，SEO 插件是必装项。
+
+   - SEO 插件: Yoast SEO，管理 Title Tag、Meta Description、Sitemap 自动生成、面包屑导航。
+   - 数据分析: Google Site Kit 1.178.0，官方插件，直接在 WordPress 后台查看 Search Console + Analytics 数据。
+   - 元数据: Open Graph 配置。
+
+参考
+https://hifinefilter.com/
+
+6. 前端性能 (Frontend Performance) Core Web Vitals 直接影响 Google 排名，不能忽视。
+
+   - JS 库: jQuery 3.7.1 + jQuery Migrate 3.4.1，后者说明主题或插件依赖旧版 jQuery API，属于常见技术债。
+   - 性能提示: Priority Hints 已启用，主动告知浏览器资源加载优先级，有助于提升 LCP 分数。
+   - 提示：LiteSpeed 自带缓存，配合 Cloudflare CDN，无需再装 WP Rocket 等付费缓存插件。
+
+7. 复制这套方案的步骤 (How to Replicate)
+
+   1. 在 Hostinger 购买 Business 套餐，一键安装 WordPress。
+   2. 安装 WooCommerce，配置产品页和支付网关（Stripe 推荐）。
+   3. 注册 Cloudflare，将域名 NS 指向 Cloudflare，开启 HTTP/3 和自动 HTTPS。
+   4. 安装 Yoast SEO，提交 Sitemap 到 Google Search Console。
+   5. 安装 Google Site Kit，绑定 Analytics 和 Search Console。
+   6. 配置 Open Graph（Yoast SEO 已内置），确保社媒分享有预览图。
+   7. 在 Cloudflare 开启 Priority Hints（Speed → Optimization）。
+
+Created by YTTK Team
