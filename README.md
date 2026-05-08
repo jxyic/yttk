@@ -51,7 +51,7 @@
 
 参考：
 https://www.szjxy-ic.com/、https://www.joydo-ele.com/、https://www.mouser.com/、https://www.digikey.com/、
-https://www.pcbinq.com/
+https://www.pcbinq.com/、
 https://hifinefilter.com/
 
 *Created by YTTK Team*
